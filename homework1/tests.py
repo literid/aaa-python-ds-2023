@@ -17,7 +17,7 @@ def test_empty_corpus():
 
 
 def test_token_sep():
-    token_sep = ','
+    token_sep = ","
     corpus = [
         token_sep.join(["one", "two", "three", "two", "one"])
     ]
@@ -64,15 +64,15 @@ def test_example2():
 
 def test_example3():
     corpus = [
-        'Crock Pot Pasta Never boil pasta again',
-        'Pasta Pomodoro Fresh ingredients Parmesan to taste'
+        "Crock Pot Pasta Never boil pasta again",
+        "Pasta Pomodoro Fresh ingredients Parmesan to taste"
     ]
     vectorizer = CountVectorizer()
     term_matrix = vectorizer.fit_transform(corpus)
     assert term_matrix == [[1, 1, 2, 1, 1, 1, 0, 0, 0, 0, 0, 0],
                            [0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 1]]
-    assert vectorizer.get_feature_names() == ['crock', 'pot', 'pasta', 'never', 'boil', 'again', 'pomodoro', 'fresh',
-                                              'ingredients', 'parmesan', 'to', 'taste']
+    assert vectorizer.get_feature_names() == ["crock", "pot", "pasta", "never", "boil", "again", "pomodoro", "fresh",
+                                              "ingredients", "parmesan", "to", "taste"]
 
 
 def run_tests():
@@ -84,4 +84,5 @@ def run_tests():
     test_example3()
 
 
-run_tests()
+if __name__ == "__main__":
+    run_tests()
