@@ -14,9 +14,17 @@ class Advert:
                 raise TypeError("keys have to be strings")
             if key == 'title':
                 title_flag = True
-            if key == 'price' and mapping[key] < 0:
-                raise ValueError("price have to be >= 0")
+            if key == 'price':
+                price_value = mapping[key]
+                if not isinstance(price_value, (int, float)):
+                    raise ValueError("price have to be int or float")
+                if price_value < 0:
+                    raise ValueError("price have to be >= 0")
 
+                price_key = '_price'
+                self.__dict__[price_key] = price_value
+
+                continue
             # if mapping[key] is dict we will create another class,
             # that stores values of this
             if isinstance(mapping[key], Mapping):
@@ -31,8 +39,10 @@ class Advert:
 
     @property
     def price(self):
-        if 'price' not in self.__dict__:
+        if '_price' not in self.__dict__:
             return 0
+        else:
+            return self._price
 
     def __repr__(self):
         return f"{self.title} | {self.price} ₽"
