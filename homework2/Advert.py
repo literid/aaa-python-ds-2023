@@ -6,15 +6,22 @@ class Advert:
         for key in mapping:
             if not isinstance(key, str):
                 raise TypeError("keys have to be strings")
-
             if key == 'title':
                 title_flag = True
 
-            self.__dict__[key] = mapping[key]
+            # if mapping[key] is dict we will create another class,
+            # that stores values of this
+
+            if isinstance(mapping[key], dict):
+                # create a class, which stores inner dict
+                class_storer = type(key, (), mapping[key])
+                self.__dict__[key] = class_storer
+            else:
+                self.__dict__[key] = mapping[key]
 
         if not title_flag:
             raise RuntimeError("no 'title' key in mapping")
 
 
-ad = Advert({"title": 'example', 'price': 100})
-print(ad.price)
+ad = Advert({"title": 'example', 'price': 100, 'location': {'address': 'Alise in the mirror 12', 'house': 26}})
+print(ad.location.house)
