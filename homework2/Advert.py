@@ -1,3 +1,9 @@
+try:
+    from collections.abc import Mapping
+except ImportError:
+    from collections import Mapping
+
+
 class Advert:
     def __init__(self, mapping):
         # check if 'title' in keys
@@ -13,7 +19,7 @@ class Advert:
 
             # if mapping[key] is dict we will create another class,
             # that stores values of this
-            if isinstance(mapping[key], dict):
+            if isinstance(mapping[key], Mapping):
                 # create a class, which stores inner dict
                 class_storer = type(key, (), mapping[key])
                 self.__dict__[key] = class_storer
@@ -33,5 +39,5 @@ class Advert:
 
 
 ad = Advert({"title": 'example', 'price': 100, 'location': {'address': 'Alise in the mirror 12', 'house': 26}})
-print(ad.location.house)
+print(ad.location.address)
 print(ad)
