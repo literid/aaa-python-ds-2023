@@ -7,8 +7,9 @@ except ImportError:
 class ColorizerMixin:
     repr_color_code = 33
 
-    def __repr__(self):
-        return f"\033[1;{self.repr_color_code};40m{self.title} | {self.price} ₽"
+    def __str__(self):
+        repr_msg = self.__repr__()
+        return f"\033[1;{self.repr_color_code};40m{repr_msg}"
 
 
 class Advert(ColorizerMixin):
@@ -54,3 +55,6 @@ class Advert(ColorizerMixin):
             raise ValueError("price have to be >= 0")
 
         self._price = price_value
+
+    def __repr__(self):
+        return f"{self.title} | {self.price} ₽"
