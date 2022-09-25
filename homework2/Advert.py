@@ -21,10 +21,10 @@ class Advert(ColorizerMixin):
         for key in mapping:
             if not isinstance(key, str):
                 raise TypeError("keys have to be strings")
-            if key == 'price':
+            if key == "price":
                 price_value = mapping[key]
                 self._price_value_check(price_value)
-                price_key = '_price'
+                price_key = "_price"
                 self.__dict__[price_key] = price_value
                 continue
 
@@ -45,7 +45,7 @@ class Advert(ColorizerMixin):
 
     @property
     def price(self):
-        if '_price' not in self.__dict__:
+        if "_price" not in self.__dict__:
             return 0
         else:
             return self._price
