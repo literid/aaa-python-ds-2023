@@ -12,15 +12,14 @@ class ColorizerMixin:
 
 
 class Advert(ColorizerMixin):
-    def __init__(self, mapping):
+    def __init__(self, mapping: Mapping):
         # check if 'title' in keys
-        title_flag = False
+        if "title" not in mapping:
+            raise RuntimeError("no 'title' key in mapping")
 
         for key in mapping:
             if not isinstance(key, str):
                 raise TypeError("keys have to be strings")
-            if key == 'title':
-                title_flag = True
             if key == 'price':
                 price_value = mapping[key]
                 if not isinstance(price_value, (int, float)):
@@ -39,9 +38,6 @@ class Advert(ColorizerMixin):
                 self.__dict__[key] = class_storer
             else:
                 self.__dict__[key] = mapping[key]
-
-        if not title_flag:
-            raise RuntimeError("no 'title' key in mapping")
 
     @property
     def price(self):
