@@ -46,7 +46,11 @@ class Advert(ColorizerMixin):
         else:
             return self._price
 
+    @price.setter
+    def price(self, price_value: float):
+        if not isinstance(price_value, (int, float)):
+            raise ValueError("price have to be int or float")
+        if price_value < 0:
+            raise ValueError("price have to be >= 0")
 
-ad = Advert({"title": 'example', 'price': 100, 'location': {'address': 'Alise in the mirror 12', 'house': 26}})
-print(ad.location.address)
-print(ad)
+        self._price = price_value
