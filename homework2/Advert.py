@@ -23,10 +23,7 @@ class Advert(ColorizerMixin):
                 raise TypeError("keys have to be strings")
             if key == 'price':
                 price_value = mapping[key]
-                if not isinstance(price_value, (int, float)):
-                    raise ValueError("price have to be int or float")
-                if price_value < 0:
-                    raise ValueError("price have to be >= 0")
+                self._price_value_check(price_value)
                 price_key = '_price'
                 self.__dict__[price_key] = price_value
                 continue
@@ -40,6 +37,12 @@ class Advert(ColorizerMixin):
             else:
                 self.__dict__[key] = mapping[key]
 
+    def _price_value_check(self, price_value):
+        if not isinstance(price_value, (int, float)):
+            raise ValueError("price have to be int or float")
+        if price_value < 0:
+            raise ValueError("price have to be >= 0")
+
     @property
     def price(self):
         if '_price' not in self.__dict__:
@@ -49,11 +52,7 @@ class Advert(ColorizerMixin):
 
     @price.setter
     def price(self, price_value: float):
-        if not isinstance(price_value, (int, float)):
-            raise ValueError("price have to be int or float")
-        if price_value < 0:
-            raise ValueError("price have to be >= 0")
-
+        self._price_value_check(price_value)
         self._price = price_value
 
     def __repr__(self):
