@@ -18,36 +18,24 @@ LETTER_TO_MORSE = {
     ' ': ' '
 }
 
-MORSE_TO_LETTER = {
-    morse: letter
-    for letter, morse in LETTER_TO_MORSE.items()
-}
-
 
 def encode(message: str) -> str:
     """
     Кодирует строку в соответсвие с таблицей азбуки Морзе
+
+    >>> encode('APPLE')
+    '.- .--. .--. .-.. .'
+    >>> encode('SOS')
+    '... --- ...'
+    >>> encode('VERY LONG MESSAGE')
+    '...- . .-. -.--   .-.. --- -. --.   -- . ... ... .- --. .'
+    >>> encode(1) # doctest: +IGNORE_EXCEPTION_DETAIL
+    Traceback (most recent call last):
+        ...
+    TypeError:
     """
     encoded_signs = [
         LETTER_TO_MORSE[letter] for letter in message
     ]
 
     return ' '.join(encoded_signs)
-
-
-def decode(morse_message: str) -> str:
-    """
-    Декодирует строку из азбуки Морзе в английский
-    """
-    decoded_letters = [
-        MORSE_TO_LETTER[letter] for letter in morse_message.split()
-    ]
-
-    return ''.join(decoded_letters)
-
-
-if __name__ == '__main__':
-    morse_msg = '-- .- .. -....- .--. -.-- - .... --- -. -....- ..--- ----- .---- ----.'
-    decoded_msg = decode(morse_msg)
-    print(decoded_msg)
-    assert morse_msg == encode(decoded_msg)

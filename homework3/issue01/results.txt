@@ -1,0 +1,33 @@
+Input:
+python -m doctest -o NORMALIZE_WHITESPACE -v morse_encode.py
+
+Output:
+Trying:
+    encode('APPLE')
+Expecting:
+    '.- .--. .--. .-.. .'
+ok
+Trying:
+    encode('SOS')
+Expecting:
+    '... --- ...'
+ok
+Trying:
+    encode('VERY LONG MESSAGE')
+Expecting:
+    '...- . .-. -.--   .-.. --- -. --.   -- . ... ... .- --. .'
+ok
+Trying:
+    encode(1) # doctest: +IGNORE_EXCEPTION_DETAIL
+Expecting:
+    Traceback (most recent call last):
+        ...
+    TypeError:
+ok
+1 items had no tests:
+    morse_encode
+1 items passed all tests:
+   4 tests in morse_encode.encode
+4 tests in 2 items.
+4 passed and 0 failed.
+Test passed.
