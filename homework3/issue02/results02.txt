@@ -1,0 +1,15 @@
+Input:
+pytest -v test_decode.py
+
+Output:
+============================= test session starts ==============================
+platform linux -- Python 3.10.6, pytest-7.1.3, pluggy-1.0.0 -- /home/nikolai/PycharmProjects/aaa-python-ds-2023/venv/aaa-python-venv/bin/python
+cachedir: .pytest_cache
+rootdir: /home/nikolai/PycharmProjects/aaa-python-ds-2023/homework3/issue02
+collecting ... collected 3 items
+
+test_decode.py::test_decode[... --- ...-SOS] PASSED                      [ 33%]
+test_decode.py::test_decode[.- .--. .--. .-.. .-APPLE] PASSED            [ 66%]
+test_decode.py::test_decode[.-.-.- .---- -....- ..--- -....- ----- .-.-.--.1-2-0.] PASSED [100%]
+
+============================== 3 passed in 0.01s ===============================
