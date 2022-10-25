@@ -1,4 +1,4 @@
-from Advert import Advert
+from advert import Advert
 
 
 def test_example1():
